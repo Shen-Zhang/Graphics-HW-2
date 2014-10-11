@@ -22,7 +22,7 @@ float TIME;
 
 
 bool pol = false;
-bool lan = false;
+bool lag = false;
 bool bez = false;
 
 std::vector<Curve*> LC ;
@@ -34,7 +34,7 @@ std::vector<float> knots;
 void onMouse(int button, int state, int x, int y) {
     int viewportRect[4];
     glGetIntegerv(GL_VIEWPORT, viewportRect);
-    if (lan == true && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+    if (lag == true && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
         LC.at(0)->addControlPoint( float2(
                                               x * 2.0 / viewportRect[2] - 1.0,
                                               -y * 2.0 / viewportRect[3] + 1.0));
@@ -67,9 +67,9 @@ void onKeyBoard(unsigned char key, int x, int y)
     
     if (key == 'l')
     {
-        lan = true;
+        lag = true;
     } else {
-        lan = false;
+        lag = false;
     }
     
     glutPostRedisplay();
