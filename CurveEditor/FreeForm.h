@@ -33,5 +33,19 @@ public:
         
         // draw points at control points
     }
+
+    void removeCP(float2 p)
+    {
+        std:: vector<float2>:: iterator i = controlPoints.begin() = find(controlPoints.begin(), controlPoints.end(), p);
+        
+        if (i != controlPoints.end())
+        {
+            int pos = (int) distance (controlPoints.begin(), i);
+            controlPoints.erase(controlPoints.begin()+ pos);
+        }
+
+        
+    }
+ 
 };
 #endif /* defined(__practical2__FreeForm__) */

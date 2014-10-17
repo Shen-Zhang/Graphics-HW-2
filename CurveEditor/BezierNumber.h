@@ -9,6 +9,17 @@
 #ifndef practical2_BezierNumber_h
 #define practical2_BezierNumber_h
 
+include "BezierCurve.h"
+include "float2.h"
+
+class BezierNumber : public BezierCurve
+{
+public:
+    void BezierOne()
+    {
+        
+    }
+};
 
 
 #endif

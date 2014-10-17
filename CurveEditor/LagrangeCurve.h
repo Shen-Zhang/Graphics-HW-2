@@ -17,6 +17,27 @@ class LagrangeCurve : public FreeForm
 {
     std::vector<float> knots;
 public:
+    void draw()
+	{
+        draw(.2,.6,.4);
+		
+	};
+    void draw(float a, float b, float c){
+        glColor3d(a,b,c);
+        glBegin(GL_LINE_STRIP);
+        //glColor3d(0.3,0.6,0.9);
+        float2 v;
+        for (float i = 0; i<=1; i+=0.01) {
+            v = getPoint(i);
+            glVertex2d(v.x, v.y);
+        }
+		glEnd();
+        
+    };
+    int getNumCP()
+    {
+        return (int)controlPoints.size();
+    }
     void addControlPoint(float2 p)
     {
         controlPoints.push_back(p);
@@ -36,7 +57,7 @@ public:
         }
         return l;
     };
-    
+   
     float2 getPoint(float t)
     {
         float2 r(0.0, 0.0);

@@ -17,12 +17,17 @@ public:
     
 	float2(float x, float y):x(x),y(y){}
     
+   
 	float2 operator-() const
 	{
 		return float2(-x, -y);
 	}
     
-    
+    bool operator== (const float2& a)
+    {
+        
+        return ((a.x == x) && (a.y == y ));
+    }
 	float2 operator+(const float2& addOperand) const
 	{
 		return float2(x + addOperand.x, y + addOperand.y);

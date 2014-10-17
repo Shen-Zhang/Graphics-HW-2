@@ -60,32 +60,31 @@ public:
             glVertex2f(controlPoints[i].x, controlPoints[i].y);
         glEnd();
     }
-    
-};
-
-    /*
-protected:
-    std::vector<float2> controlPoints;
-    
-public:
-    float2 getPoint(float t) {
-        float2 r(0.0, 0.0);
-        for(int i = 0; i < controlPoints.size(); i++)
-        {
-            r = r + (controlPoints[i] *  t);
-        }
-        return r;
-    }
-    float2 getDerivative(float t)
-    {
+    void draw()
+	{
+        draw(.4,.7,.2);
+		
+	};
+    void draw(float a, float b, float c){
+        glBegin(GL_LINE_STRIP);
+        glColor3d(a,b,c);
+        for(int i = 0; i < controlPoints.size();i++)
+            glVertex2f(controlPoints[i].x, controlPoints[i].y);
+		glEnd();
         
-        return float2(0,0) ;
-    }
-    virtual void addControlPoint(float2 p)
+    };
+    
+    void removeCP(float2 p)
     {
-        controlPoints.push_back(p);
+        std:: vector<float2>:: iterator i = controlPoints.begin() = find(controlPoints.begin(), controlPoints.end(), p);
+        if (i != controlPoints.end())
+        {
+            int pos = (int)  distance (controlPoints.begin(), i);
+            controlPoints.erase(controlPoints.begin()+ pos);
+        }
+        
+        
     }
+    
 };
-*/
-
 #endif

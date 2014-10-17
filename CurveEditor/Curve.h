@@ -21,18 +21,11 @@ public:
     virtual float2 getDerivative(float t)=0;
     virtual void drawControlPoints(){};
     virtual void addControlPoint(float2 p)=0;
-	void draw()
-	{
-        
-		glBegin(GL_LINE_STRIP);
-        glColor3d(0.3,0.6,0.9);
-        float2 v;
-        for (float i = 0; i<=1; i+=0.01) {
-            v = getPoint(i);
-            glVertex2d(v.x, v.y);
-        }
-		glEnd();
-	};
+    //virtual void drawTracker()=0;
+    virtual int getNumCP()=0;
+    virtual void draw()=0;
+	virtual void draw(float a, float b, float c)=0;
+    virtual void removeCP(float2 p)=0;
     
     void drawTracker(float t)
     {
@@ -48,6 +41,7 @@ public:
         glVertex3f(r.x + d.x,r.y + d.y,0.0) ;
         glEnd();
     } // frawTracker(float)
+    
     
 };
 
