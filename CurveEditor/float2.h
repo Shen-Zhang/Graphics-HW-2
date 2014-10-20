@@ -17,6 +17,10 @@ public:
     
 	float2(float x, float y):x(x),y(y){}
     
+    float distance(const float2&a)
+    {
+        return sqrt((x*x - a.x*a.x) + (y*y - a.y*a.y));
+    }
    
 	float2 operator-() const
 	{
@@ -26,9 +30,9 @@ public:
     bool operator== (const float2& a)
     {
         
-        return ((a.x == x) && (a.y == y ));
+        return sqrt((a.x - x)*(a.x - x) + (a.y - y)*(a.y - y));
     }
-	float2 operator+(const float2& addOperand) const
+	float2 operator+(const float2& addOperand)
 	{
 		return float2(x + addOperand.x, y + addOperand.y);
 	}

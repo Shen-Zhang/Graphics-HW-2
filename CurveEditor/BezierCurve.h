@@ -18,15 +18,16 @@ class BezierCurve : public FreeForm
 {
 protected:
     Curve * curve;
+
 public:
     void draw()
 	{
-        draw(.5,.4,.7);		
+		draw(.5,.4,.7);
+        
 	};
     void draw(float a, float b, float c){
         glColor3d(a,b,c);
         glBegin(GL_LINE_STRIP);
-        //glColor3d(0.3,0.6,0.9);
         float2 v;
         for (float i = 0; i<=1; i+=0.01) {
             v = getPoint(i);

@@ -21,12 +21,36 @@ protected:
     std::vector<float> knots;
     
 public:
-    // constructor to initialize members
+    
     int getNumCP()
     {
-        return (int)controlPoints.size();
+        return (int) controlPoints.size();
     }
-    
+    void setControlPoint(int pos, float2 p)
+    {
+        controlPoints[pos] = p;
+    }
+    void setControlPoint(float2 offset)
+    {
+        if (!controlPoints.empty())
+        {
+            for(int i = 0; i < controlPoints.size(); i++)
+            {
+                setControlPoint(i, controlPoints[i]+offset);
+            }
+        }
+    }
+    int onPoint(float2 p)
+    {
+        if(!controlPoints.empty())
+        {
+            for(int i = 0; i < controlPoints.size();i++)
+                if (controlPoints[i].distance(p) <= 0.15)
+                    return i;
+        }
+        return -1;
+        
+    }
     float2 getPoint(float t)  // only in C++11
     {
         float2 r;
@@ -34,12 +58,12 @@ public:
             r = controlPoints[0];
         else
             r = float2(0,0);
-        //r = controlPoints[0];
+       
         for(int i = 1; i < controlPoints.size(); i++)
         {
             r = (controlPoints[i-1] * (1-t) + controlPoints[i] *t);
         }
-        // evaluate parametric line segment formula
+     
         
         return r;
     }
@@ -73,17 +97,22 @@ public:
 		glEnd();
         
     };
-    
-    void removeCP(float2 p)
+   
+    void removeCP(int p)
     {
-        std:: vector<float2>:: iterator i = controlPoints.begin() = find(controlPoints.begin(), controlPoints.end(), p);
-        if (i != controlPoints.end())
-        {
-            int pos = (int)  distance (controlPoints.begin(), i);
-            controlPoints.erase(controlPoints.begin()+ pos);
-        }
         
+        controlPoints.erase(controlPoints.begin() + p);
         
+    }
+    void translate(float x, float y)
+    {
+        glLoadIdentity();
+        glPushMatrix();
+        glTranslatef(x,y,0);
+        
+        // need to make OpenGL translate the vertices
+        draw();
+        glPopMatrix();
     }
     
 };
